@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: server
-        image: magrufol/netflix-movie-catalog-dev:v1.0.7
+        image: magrufol/netflix-movie-catalog-dev:v1.0.8
         resources:
           requests:
             cpu: 200m
