@@ -11,7 +11,13 @@ pipeline {
     stages {
         stage('Git setup') {
             steps {
-                sh 'git checkout -b main || git checkout main'
+                sh 'git checkout -b dev || git checkout dev'
+                withCredentials([usernamePassword(credentialsId: 'github', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_TOKEN')]) {
+                    sh '''
+                        git config user.email "${GITHUB_USERNAME}@users.noreply.github.com"
+                        git config user.name "${GITHUB_USERNAME}"
+                    '''
+                }
             }
         }
         stage('update YAML manifest') {
